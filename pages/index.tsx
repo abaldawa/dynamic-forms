@@ -162,7 +162,6 @@ const Home: NextPage<HomeProps> = (props) => {
           </span>
         )}
         <ManageIntegrations
-          userId={userId}
           updateConfiguredIntegration={updateConfiguredIntegration}
           configuredIntegrations={configuredUserIntegrations}
           deleteConfiguredIntegration={deleteConfiguredIntegration}

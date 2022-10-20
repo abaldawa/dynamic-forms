@@ -35,7 +35,7 @@ const FieldMapping: React.FC<FieldMappingProps> = (props) => {
 
     setFieldMappings(
       newUserFieldMappings.map(
-        (newUserFieldMapping, i) => {
+        (newUserFieldMapping) => {
           if(userTextMapping[newUserFieldMapping.userField] > 1) {
             newUserFieldMapping.error = 'Duplicate';
           } else {

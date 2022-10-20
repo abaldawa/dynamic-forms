@@ -28,10 +28,6 @@ const removeIntegration = (integrationId: UserIntegration['id']): UserIntegratio
   }
 };
 
-const findIntegrationById = (integrationId: UserIntegration['id']): UserIntegration | undefined => {
-  return userIntegrations.find(integration => integration.id === integrationId);
-};
-
 const findIntegrationsByUserId = (userId: UserIntegration['userId']): UserIntegration[] => {
   return userIntegrations.filter(integration => integration.userId === userId);
 };
@@ -58,7 +54,6 @@ export type {
 
 export {
   getSupportedIntegrationServiceNames,
-  findIntegrationById,
   findIntegrationsByUserId,
   addIntegration,
   updateIntegration,

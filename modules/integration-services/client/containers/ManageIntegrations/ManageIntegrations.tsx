@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {User} from "../../../../../common/types/user";
 import {UserIntegration} from "../../../../../common/types/user-integration";
 import {FormBuilder} from "../../../../../client/components/FormBuilder/FormBuilder";
 import {integrationServiceToFormSchema} from "../../constants/integrations-form-schema-definition";
@@ -11,7 +10,6 @@ import {
 import styles from "./ManageIntegrations.module.css";
 
 interface ManageIntegrationsProps {
-  userId: User['id'];
   configuredIntegrations: UserIntegration[];
   updateConfiguredIntegration: (
     integrationId: string,
@@ -23,7 +21,6 @@ interface ManageIntegrationsProps {
 
 const ManageIntegrations: React.FC<ManageIntegrationsProps> = (props) => {
   const {
-    userId,
     configuredIntegrations,
     updateConfiguredIntegration,
     deleteConfiguredIntegration

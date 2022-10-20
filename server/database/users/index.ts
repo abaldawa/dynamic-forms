@@ -1,6 +1,5 @@
 import {Contact, User} from "../../../common/types/user";
 
-
 const getUser = (): User => ({
     id: "12345",
     given_name: "Jane",
