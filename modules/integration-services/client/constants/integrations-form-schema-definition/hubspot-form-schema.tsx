@@ -35,6 +35,8 @@ const hubspotFormSchema: FormBuilderSchema<
   ],
   renderAdditionalCustomForm: (setAdditionalCustomFormData, initialFieldMappings) => {
     return <FieldMapping
+      userFieldLabel="Hubspot field"
+      mappedFieldLabel="Blinq contact field"
       fields={userContactsDBFields}
       setMetaDataDetails={setAdditionalCustomFormData}
       initialFieldMappings={initialFieldMappings}

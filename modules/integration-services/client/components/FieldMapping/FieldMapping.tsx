@@ -10,6 +10,8 @@ interface FieldMappingData {
 interface FieldMappingProps {
   fields: readonly string[];
   setMetaDataDetails: (completed: boolean, metaData?: FieldMappingData[]) => void;
+  userFieldLabel: string;
+  mappedFieldLabel: string;
   initialFieldMappings?: FieldMappingData[];
   children?: never;
 }
@@ -18,6 +20,8 @@ const FieldMapping: React.FC<FieldMappingProps> = (props) => {
   const {
     fields,
     initialFieldMappings,
+    userFieldLabel,
+    mappedFieldLabel,
     setMetaDataDetails
   } = props;
   const [fieldMappings, setFieldMappings] = useState<FieldMappingData[]>( () => [{userField: "", mappedField: ""}]);
@@ -122,8 +126,8 @@ const FieldMapping: React.FC<FieldMappingProps> = (props) => {
     <div className={styles['container']}>
       <h4 className={styles['title']}>Field mappings</h4>
       <div className={styles['field-mapping-container']}>
-        <span className={styles['field-mapping__label']}>Hubspot field</span>
-        <span className={styles['field-mapping__label']}>Blinq contact field</span>
+        <span className={styles['field-mapping__label']}>{userFieldLabel}</span>
+        <span className={styles['field-mapping__label']}>{mappedFieldLabel}</span>
         <span></span>
         {fieldMappings.map((fieldMapping, index) => (
           <Fragment key={index}>
