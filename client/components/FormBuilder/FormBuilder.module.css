@@ -1,0 +1,50 @@
+.form-container {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-title {
+    margin: 0;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.form-fields-container {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    gap: 5px
+}
+
+.form-fields__label {
+    justify-self: flex-end;
+    align-self: flex-start;
+    font-weight: 500;
+}
+
+.form-fields__input {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-fields__input--error {
+    color: red;
+    margin: 0;
+}
+
+.form-button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.form-button {
+    cursor: pointer;
+}
+
+.form-submit--disabled {
+    cursor: not-allowed;
+}

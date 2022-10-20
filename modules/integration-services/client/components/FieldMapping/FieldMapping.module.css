@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: cornsilk;
+}
+
+.title {
+    margin: 0;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.field-mapping-container {
+    display: grid;
+    grid-template-columns: 1fr auto 0.3fr;
+    gap: 5px
+}
+
+.field-mapping__label {
+    text-align: center;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.field-mapping__input {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-mapping__input--error {
+    color: red;
+    margin: 0;
+}
+
+.field-mapping__selection {
+    align-self: flex-start;
+}
+
+.field-mapping__delete-button {
+    align-self: flex-start;
+    justify-self: flex-start;
+    background-color: #f1ecec;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.field-mapping__delete-button:hover {
+    background-color: red;
+    color: white;
+    border: 1px solid white;
+}
+
+.field-mapping__delete-button--disabled {
+    cursor: not-allowed;
+}
+
+.field-mapping__add-mapping {
+    align-self: center;
+    cursor: pointer;
+}
+
+.field-mapping__add-mapping--disabled {
+    cursor: not-allowed;
+}
