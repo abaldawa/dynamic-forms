@@ -14,7 +14,6 @@ import {database} from "../server/database";
 import {User} from "../common/types/user";
 import * as integrationServicesClient from "../modules/integration-services/client/service";
 import styles from "../styles/Home.module.css";
-import {unlink} from "fs";
 
 const getNonConfiguredIntegrationNames = (
   supportedIntegrations: SupportedIntegrationServices[],
