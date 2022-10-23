@@ -31,7 +31,7 @@ const getAllConfiguredIntegrationServicesOfUser = (
   const userId = getUserFromAuthHeader(req);
 
   if(!userId || typeof userId !== 'string') {
-    return res.status(400).json({message: `'userId' required and must be string`})
+    return res.status(400).json({message: `'userId' is required and must be set in authorization header`})
   }
 
   res.status(200).json({data: database.integrations.findIntegrationsByUserId(userId)});
@@ -53,7 +53,7 @@ const createNewIntegrationServiceForUser = (
 
   // 2. Validate the received data
   if(!userId || typeof userId !== 'string') {
-    return res.status(400).json({message: `'userId' required and must be string`})
+    return res.status(400).json({message: `'userId' is required and must be set in authorization header`})
   }
 
   if (!newIntegration || typeof newIntegration !== 'object') {
@@ -124,7 +124,7 @@ const updateIntegrationServiceOfUser = (
 
   // 2. Validate the received data
   if(!userId || typeof userId !== 'string') {
-    return res.status(400).json({message: `'userId' required and must be string`})
+    return res.status(400).json({message: `'userId' is required and must be set in authorization header`})
   }
 
   if(!id || typeof id !== 'string') {
@@ -189,7 +189,7 @@ const deleteIntegrationServiceOfUser = (
 
   // 2. Validate the received data
   if(!userId || typeof userId !== 'string') {
-    return res.status(400).json({message: `'userId' required and must be string`})
+    return res.status(400).json({message: `'userId' is required and must be set in authorization header`})
   }
 
   if(!id || typeof id !== 'string') {
