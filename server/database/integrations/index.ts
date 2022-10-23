@@ -19,8 +19,13 @@ const addIntegration = (userIntegration: Omit<UserIntegration, 'id'>): UserInteg
   return newIntegration;
 };
 
-const removeIntegration = (integrationId: UserIntegration['id']): UserIntegration | undefined => {
-  const index = userIntegrations.findIndex(integration => integration.id === integrationId);
+const removeIntegration = (
+  integrationId: UserIntegration['id'],
+  userId: UserIntegration['userId']
+): UserIntegration | undefined => {
+  const index = userIntegrations.findIndex(
+    integration => integration.id === integrationId && integration.userId === userId
+  );
 
   if(index !== -1) {
     const [deletedIntegration] = userIntegrations.splice(index, 1);

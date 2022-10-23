@@ -51,10 +51,10 @@ const Home: NextPage<HomeProps> = (props) => {
     try {
       const createdIntegration = await integrationServicesClient.createIntegration(userId, integrationServiceName, integrationServiceData);
 
-      setConfiguredUserIntegrations(createdIntegration);
+      await fetchConfiguredIntegrations();
       setOperationStatus({
         status: 'success',
-        message: `Successfully integrated with '${integrationServiceName}'`
+        message: `Successfully integrated with '${createdIntegration.integrationServiceName}'`
       });
     } catch(err: unknown) {
       setOperationStatus({

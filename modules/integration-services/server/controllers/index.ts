@@ -16,6 +16,8 @@ interface ErrorResponse {
   errorDetails?: object;
 }
 
+const getUserFromAuthHeader = (req: NextApiRequest) => req.headers.authorization?.split(" ")[1];
+
 /**
  * @public
  *
@@ -26,7 +28,7 @@ const getAllConfiguredIntegrationServicesOfUser = (
   req: NextApiRequest,
   res: NextApiResponse<SuccessResponse | ErrorResponse>
 ) => {
-  const {userId} = req.query as {userId?: string};
+  const userId = getUserFromAuthHeader(req);
 
   if(!userId || typeof userId !== 'string') {
     return res.status(400).json({message: `'userId' required and must be string`})
@@ -46,10 +48,8 @@ const createNewIntegrationServiceForUser = (
   res: NextApiResponse<SuccessResponse | ErrorResponse>
 ) => {
   // 1. Extract the incoming data
-  const {
-    query: { userId },
-    body: newIntegration,
-  } = req;
+  const { body: newIntegration } = req;
+  const userId = getUserFromAuthHeader(req);
 
   // 2. Validate the received data
   if(!userId || typeof userId !== 'string') {
@@ -117,9 +117,10 @@ const updateIntegrationServiceOfUser = (
 ) => {
   // 1. Extract the incoming data
   const {
-    query: { userId, id },
+    query: { id },
     body,
   } = req;
+  const userId = getUserFromAuthHeader(req);
 
   // 2. Validate the received data
   if(!userId || typeof userId !== 'string') {
@@ -166,7 +167,7 @@ const updateIntegrationServiceOfUser = (
   }
 
   // 5. Respond with updated integration
-  return res.status(200).json({data: updatedIntegration});
+  res.status(200).json({data: updatedIntegration});
 };
 
 /**
@@ -181,8 +182,10 @@ const deleteIntegrationServiceOfUser = (
 ) => {
   // 1. Extract the incoming data
   const {
-    query: { userId, id }
+    query: { id }
   } = req;
+
+  const userId = getUserFromAuthHeader(req);
 
   // 2. Validate the received data
   if(!userId || typeof userId !== 'string') {
@@ -193,15 +196,16 @@ const deleteIntegrationServiceOfUser = (
     return res.status(400).json({message: `'id' is required and must be string`})
   }
 
-  // 3. As the data is valid, delete the integration from the database
-  const deletedIntegration = database.integrations.removeIntegration(id);
+  // 3. Check and remove provided integration for the userId
+  const deletedIntegration = database.integrations.removeIntegration(id, userId);
 
-  // 4. Respond whether the operation is successful or not
-  if(deletedIntegration) {
-    return res.status(200).json({ data: deletedIntegration });
+  // 4. If integration is not found in DB for user id then respond with error
+  if(!deletedIntegration) {
+    return res.status(404).json({message: `For user id '${userId}', integration '${id}' not found in DB`});
   }
 
-  res.status(404).json({ message: `integration '${id}' not found in DB` });
+  // 5. Integration successfully removed for the user id
+  res.status(200).json({ data: deletedIntegration });
 };
 
 export {
