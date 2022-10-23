@@ -29,13 +29,12 @@ const createIntegration = async (
 const updateConfiguredIntegration = async (
   userId: User['id'],
   integrationId: string,
-  integrationServiceName: SupportedIntegrationServices,
   updatedIntegrationServiceData: IntegrationServiceToOptions[SupportedIntegrationServices]
 ) => {
-  const response = await axios.patch<{data: UserIntegration}>(`${INTEGRATION_SETTINGS_BASE_URL}/${integrationId}?userId=${userId}`, {
-    integrationServiceName,
-    integrationServiceData: updatedIntegrationServiceData
-  });
+  const response = await axios.patch<{data: UserIntegration}>(
+    `${INTEGRATION_SETTINGS_BASE_URL}/${integrationId}?userId=${userId}`,
+    updatedIntegrationServiceData
+  );
 
   return response.data.data;
 };

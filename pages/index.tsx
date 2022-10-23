@@ -66,14 +66,12 @@ const Home: NextPage<HomeProps> = (props) => {
 
   const updateConfiguredIntegration = async (
     integrationId: string,
-    integrationServiceName: SupportedIntegrationServices,
     updatedIntegrationServiceData: IntegrationServiceToOptions[SupportedIntegrationServices]
   ) => {
     try {
       const updatedIntegration = await integrationServicesClient.updateConfiguredIntegration(
         userId,
         integrationId,
-        integrationServiceName,
         updatedIntegrationServiceData
       );
 

@@ -13,7 +13,6 @@ interface ManageIntegrationsProps {
   configuredIntegrations: UserIntegration[];
   updateConfiguredIntegration: (
     integrationId: string,
-    integrationServiceName: SupportedIntegrationServices,
     updatedIntegrationServiceData: IntegrationServiceToOptions[SupportedIntegrationServices]
   ) => void;
   deleteConfiguredIntegration: (integrationToDelete: UserIntegration) => void;
@@ -75,7 +74,6 @@ const ManageIntegrations: React.FC<ManageIntegrationsProps> = (props) => {
             onFormDelete={() => deleteConfiguredIntegration(selectedIntegrationConfig)}
             onFormSubmit={(data: IntegrationServiceToOptions[SupportedIntegrationServices]) => updateConfiguredIntegration(
               selectedIntegrationConfig.id,
-              selectedIntegrationConfig.integrationServiceName,
               data
             )}
           />

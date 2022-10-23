@@ -53,7 +53,7 @@ const hubspotFormSchema: FormBuilderSchema<
       ...formData,
       field_mappings: fieldMappings.map((fieldMapping) => ({
         hubspotField: fieldMapping.userField,
-        blinqContactField: fieldMapping.mappedField
+        blinqContactField: fieldMapping.mappedField as IntegrationServiceToOptions['HubSpot']['field_mappings'][number]['blinqContactField']
       }))
     };
   }

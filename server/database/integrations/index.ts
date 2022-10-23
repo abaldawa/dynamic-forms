@@ -28,12 +28,28 @@ const removeIntegration = (integrationId: UserIntegration['id']): UserIntegratio
   }
 };
 
+const findIntegration = (
+  query: Partial<Omit<UserIntegration, "integrationServiceData">>
+): UserIntegration | undefined => {
+  const allQueries = Object.entries(query) as Array<
+    [queryKey: keyof typeof query, queryValue: typeof query[keyof typeof query]]
+  >;
+
+  return userIntegrations.find(
+    userIntegration => allQueries.every(
+      ([queryKey, queryValue]) => userIntegration[queryKey] === queryValue
+    )
+  );
+};
+
 const findIntegrationsByUserId = (userId: UserIntegration['userId']): UserIntegration[] => {
   return userIntegrations.filter(integration => integration.userId === userId);
 };
 
 const updateIntegration = (updatedIntegration: UserIntegration): UserIntegration | undefined => {
-  const integrationToUpdate = userIntegrations.find(integration => integration.id === updatedIntegration.id);
+  const integrationToUpdate = userIntegrations.find(
+    integration => integration.id === updatedIntegration.id && integration.userId === updatedIntegration.userId
+  );
   
   if(integrationToUpdate) {
     integrationToUpdate.integrationServiceData = updatedIntegration.integrationServiceData;
@@ -54,6 +70,7 @@ export type {
 
 export {
   getSupportedIntegrationServiceNames,
+  findIntegration,
   findIntegrationsByUserId,
   addIntegration,
   updateIntegration,
