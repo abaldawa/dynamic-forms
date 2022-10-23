@@ -16,3 +16,19 @@ Everything is 100% typed in Typescript with full code completion and data is val
 Below gif shows the output of this repo.
 
 ![dynamic-forms-usage](https://user-images.githubusercontent.com/5449692/197034123-6324c860-7b24-4e40-8138-c51f1b254ee2.gif)
+
+### REST Api's
+Below REST Api's are exposed to be consumed by the UI.
+1] GET /api/integrations
+2] POST /api/integrations
+3] PUT /api/integrations/:id
+4] DELETE /api/integrations/:id
+
+To simulate logged-in behaviour pass below in the header:
+```typescript
+{
+  headers: {
+    Authorization: `Bearer ${userId}`
+  }
+}
+```
