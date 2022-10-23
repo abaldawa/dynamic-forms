@@ -19,12 +19,12 @@ Below gif shows the output of this repo.
 
 ### REST Api's
 Below REST Api's are exposed to be consumed by the UI.
-1. GET /api/integrations
-2. POST /api/integrations
-3. PUT /api/integrations/:id
-4. DELETE /api/integrations/:id
+1. GET /api/integrations - Gets all integrations of a user
+2. POST /api/integrations - Create a new integration for a user
+3. PATCH /api/integrations/:id - Updates an existing integration of a user
+4. DELETE /api/integrations/:id - Deletes an existing untegration of a user
 
-To simulate logged-in behaviour pass below in the header:
+To simulate logged-in behaviour pass below in the header with all REST Api's to associate a request with the userId:
 ```typescript
 {
   headers: {
