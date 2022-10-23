@@ -19,10 +19,10 @@ Below gif shows the output of this repo.
 
 ### REST Api's
 Below REST Api's are exposed to be consumed by the UI.
-1] GET /api/integrations
-2] POST /api/integrations
-3] PUT /api/integrations/:id
-4] DELETE /api/integrations/:id
+1. GET /api/integrations
+2. POST /api/integrations
+3. PUT /api/integrations/:id
+4. DELETE /api/integrations/:id
 
 To simulate logged-in behaviour pass below in the header:
 ```typescript
